@@ -9,6 +9,12 @@ Cell::Cell(const QVariant& data)
     : m_data(data)
 { }
 
+Cell::Cell(const Cell& cell)
+    : QObject()
+{
+    m_data = cell.m_data;
+}
+
 Cell::~Cell()
 { }
 

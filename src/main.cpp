@@ -11,6 +11,8 @@ int main(int argc, char** argv)
     QCoreApplication::setApplicationName("propagator");
     QCoreApplication::setApplicationVersion("0.1");
 
+    qRegisterMetaType<Cell>();
+
     Cell a(1);
     Cell b(1);
     Cell answer;
