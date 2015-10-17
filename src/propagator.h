@@ -5,9 +5,7 @@
 
 #include "cell.h"
 
-class Cell;
-
-class Propagator : public QObject {
+class Propagator : public Cell {
     Q_OBJECT
 public:
     Propagator(const QList<Cell*>& inputs, const QList<Cell*>& outputs);
