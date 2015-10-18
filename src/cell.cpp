@@ -5,7 +5,7 @@
 Cell::Cell()
 { }
 
-Cell::Cell(const QVariant& data)
+Cell::Cell(const Data& data)
     : m_data(data)
 { }
 
@@ -18,12 +18,12 @@ Cell::Cell(const Cell& cell)
 Cell::~Cell()
 { }
 
-QVariant Cell::data() const
+Data Cell::data() const
 {
     return m_data;
 }
 
-void Cell::setData(const QVariant& data)
+void Cell::setData(const Data& data)
 {
     if (m_data != data) {
         m_data = data;

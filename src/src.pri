@@ -1,8 +1,9 @@
 DEPENDPATH += $$PWD
 INCLUDEPATH += $$PWD
 
-HEADERS += $$PWD/cell.h $$PWD/information.h $$PWD/propagator.h
+HEADERS += $$PWD/cell.h $$PWD/data.h $$PWD/propagator.h
 
-SOURCES += $$PWD/cell.cpp $$PWD/propagator.cpp
+SOURCES += $$PWD/cell.cpp $$PWD/data.cpp $$PWD/propagator.cpp
 
 QMAKE_CXXFLAGS +=
+LIBS +=

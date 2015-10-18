@@ -19,10 +19,10 @@ void Addition::run()
 {
     int result = 0;
     foreach (Cell* c, m_inputs) {
-      int data = c->data().toInt();
+      int data = c->data().toNumber();
       result += data;
     }
     foreach (Cell* c, m_outputs) {
-      c->setData(QVariant(result));
+      c->setData(result);
     }
 }

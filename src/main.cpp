@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     Cell answer;
     Addition add(QList<Cell*>() << &a << &b, QList<Cell*>() << &answer);
 
-    qDebug() << answer.data().toInt();
+    qDebug() << answer.data();
 
     return s_error ? EXIT_FAILURE : EXIT_SUCCESS;
 }
