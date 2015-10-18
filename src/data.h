@@ -33,13 +33,13 @@ public:
 
     Data merge(const Data& info);
 
-
     bool operator==(const Data &other) const;
     bool operator!=(const Data &other) const;
 
 private:
     Type m_type;
     QString m_data;
+    double m_certainty; // a number between 0 and 1
 };
 
 QDebug operator<<(QDebug debug, const Data &data);

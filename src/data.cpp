@@ -2,29 +2,34 @@
 
 Data::Data()
     : m_type(Data::Nothing)
+    , m_certainty(0)
 {
 }
 
 Data::Data(bool b)
     : m_type(Data::Boolean)
+    , m_certainty(1)
 {
     m_data = b ? "true" : "false";
 }
 
 Data::Data(int n)
     : m_type(Data::Number)
+    , m_certainty(1)
 {
     m_data = QString::number(n);
 }
 
 Data::Data(double n)
     : m_type(Data::Number)
+    , m_certainty(1)
 {
     m_data = QString::number(n);
 }
 
 Data::Data(const QString& s)
     : m_type(Data::String)
+    , m_certainty(1)
 {
     m_data = s;
 }
