@@ -1,5 +1,17 @@
 #include "data.h"
 
+#include "tms.h"
+
+Data* Data::contradiction()
+{
+    static Data* s_instance = 0;
+    if (!s_instance) {
+        s_instance = new Data;
+        s_instance->m_type = Data::Contradiction;
+    }
+    return s_instance;
+}
+
 Data::Data()
     : m_type(Data::Nothing)
     , m_certainty(0)
@@ -60,11 +72,14 @@ QString Data::toString() const
 
 Data Data::merge(const Data& info)
 {
-    if (m_type == Data::Nothing)
+    // Merge with one side a 'Nothing'
+    if (isNothing())
         return info;
-    if (info.m_type == Data::Nothing)
+    if (info.isNothing())
         return this;
-    return Data();
+
+    // FIXME: Add support for uncertainty and partial information
+    return *contradiction();
 }
 
 bool Data::isNothing() const
@@ -90,6 +105,44 @@ bool Data::isString() const
 bool Data::isContradiction() const
 {
     return m_type == Data::Contradiction;
+}
+
+double Data::certainty() const
+{
+    return m_certainty;
+}
+
+bool Data::isContingent() const
+{
+    return m_premises.count() > 0;
+}
+
+bool Data::isJustified() const
+{
+    if (!isContingent())
+        return true;
+
+    bool justified = true;
+    QList<QString> worldViewPremises = WorldView::instance()->premises();
+    foreach (QString premise, m_premises)
+        justified = !worldViewPremises.contains(premise) ? false : justified;
+    return justified;
+}
+
+QList<QString> Data::premises() const
+{
+    return m_premises;
+}
+
+void Data::addPremise(const QString& premise)
+{
+    if (!m_premises.contains(premise))
+        m_premises.append(premise);
+}
+
+void Data::removePremise(const QString& premise)
+{
+    m_premises.removeAll(premise);
 }
 
 bool Data::operator==(const Data &other) const

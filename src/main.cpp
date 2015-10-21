@@ -18,7 +18,11 @@ int main(int argc, char** argv)
     Cell answer;
     Addition add(QList<Cell*>() << &a << &b, QList<Cell*>() << &answer);
 
-    qDebug() << answer.data();
+    qDebug()
+      << "answer:" << answer.data() << "\n"
+      << "  certainty:" << answer.data().certainty() << "\n"
+      << "  isContingent:" << answer.data().isContingent() << "\n"
+      << "  isJustified:" << answer.data().isJustified();
 
     return s_error ? EXIT_FAILURE : EXIT_SUCCESS;
 }

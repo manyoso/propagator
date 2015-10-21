@@ -31,14 +31,25 @@ public:
     bool isString() const;
     bool isContradiction() const;
 
+    double certainty() const;
+    bool isContingent() const;
+    bool isJustified() const;
+
+    QList<QString> premises() const;
+    void addPremise(const QString&);
+    void removePremise(const QString&);
+
     Data merge(const Data& info);
 
     bool operator==(const Data &other) const;
     bool operator!=(const Data &other) const;
 
 private:
+    static Data* contradiction();
+
     Type m_type;
     QString m_data;
+    QList<QString> m_premises;
     double m_certainty; // a number between 0 and 1
 };
 
