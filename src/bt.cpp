@@ -14,16 +14,41 @@ BT::~BT()
 
 void BT::construct(const QString& str)
 {
+    Node* root = m_root;
+    QStack<Node*> stack;
+
     foreach(QChar c, str) {
-        if (c == 'I')
-            insert(Term::I);
-        else if (c == 'K')
-            insert(Term::K);
-        else if (c == 'S')
-            insert(Term::S);
-        else
+        if (c == 'I') {
+            root = insert(Term::I, root);
+        } else if (c == 'K') {
+            root = insert(Term::K, root);
+        } else if (c == 'S') {
+            root = insert(Term::S, root);
+        } else if (c == '(') {
+            stack.push(root); // push the current root
+            root = new Node;
+            root->id = m_id++;
+        } else if (c == ')') {
+            Node* oldRoot = stack.pop();
+            if (!oldRoot->right) {
+                oldRoot->right = root;
+                root->parent = oldRoot;
+                root = oldRoot;
+            } else {
+                Node* newRoot = new Node;
+                newRoot->id = m_id++;
+                newRoot->left = oldRoot;
+                newRoot->right = root;
+                oldRoot->parent = newRoot;
+                root->parent = newRoot;
+                root = newRoot;
+            }
+        } else {
             qDebug() << "error constructing tree!";
+        }
     }
+
+    m_root = root;
 }
 
 void BT::insert(const Term& term)

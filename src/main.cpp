@@ -19,23 +19,23 @@ int main(int argc, char** argv)
     Cell answer;
     Add add(QList<Cell*>() << &a << &b, QList<Cell*>() << &answer);
 
-    qDebug()
-      << "answer:" << answer.data() << "\n"
-      << "  certainty:" << answer.data().certainty() << "\n"
-      << "  isContingent:" << answer.data().isContingent() << "\n"
-      << "  isJustified:" << answer.data().isJustified();
+//     qDebug()
+//       << "answer:" << answer.data() << "\n"
+//       << "  certainty:" << answer.data().certainty() << "\n"
+//       << "  isContingent:" << answer.data().isContingent() << "\n"
+//       << "  isJustified:" << answer.data().isJustified();
 
     a.setData(2);
 
-    qDebug()
-      << "answer:" << answer.data() << "\n"
-      << "  certainty:" << answer.data().certainty() << "\n"
-      << "  isContingent:" << answer.data().isContingent() << "\n"
-      << "  isJustified:" << answer.data().isJustified();
+//     qDebug()
+//       << "answer:" << answer.data() << "\n"
+//       << "  certainty:" << answer.data().certainty() << "\n"
+//       << "  isContingent:" << answer.data().isContingent() << "\n"
+//       << "  isJustified:" << answer.data().isJustified();
 
     BT tree;
-    tree.construct("SKISKI");
-    qDebug() << tree.graph();
+    tree.construct("S(K(I(S(KI))))");
+    printf("%s", qPrintable(tree.graph()));
 
     return s_error ? EXIT_FAILURE : EXIT_SUCCESS;
 }
