@@ -7,21 +7,19 @@
 
 class Propagator : public Cell {
     Q_OBJECT
-public:
-    Propagator(const QList<Cell*>& inputs, const QList<Cell*>& outputs);
-    virtual ~Propagator();
-
 public slots:
-    virtual void run() = 0;
+    virtual void run() { }
 
 protected:
+    Propagator(const QList<Cell*>& inputs, const QList<Cell*>& outputs);
+    virtual ~Propagator();
     QList<Cell*> m_inputs;
     QList<Cell*> m_outputs;
 };
 
-class Addition : public Propagator {
+class Add : public Propagator {
 public:
-    Addition(const QList<Cell*>& inputs, const QList<Cell*>& outputs)
+    Add(const QList<Cell*>& inputs, const QList<Cell*>& outputs)
         : Propagator(inputs, outputs) { run(); }
 
     virtual void run();

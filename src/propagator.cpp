@@ -15,7 +15,7 @@ Propagator::Propagator(const QList<Cell*>& inputs, const QList<Cell*>& outputs)
 Propagator::~Propagator()
 { }
 
-void Addition::run()
+void Add::run()
 {
     int result = 0;
     foreach (Cell* c, m_inputs) {
